@@ -8,6 +8,9 @@ packages = [{include = "nota_de_python"}]
 
 [tool.poetry.dependencies]
 python = "3.10.10"
+jupyter-book = "^0.13.2"
+black = "^23.1.0"
+ghp-import = "^2.1.0"
 
 
 [build-system]
