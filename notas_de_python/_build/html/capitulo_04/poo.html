@@ -52,6 +52,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Bibliografia" href="../bib.html" />
     <link rel="prev" title="Notas de Python" href="../intro.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -113,6 +114,11 @@ const thebe_selector_output = ".output, .cell_output"
    Programacion orientada a objetos
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../bib.html">
+   Bibliografia
+  </a>
+ </li>
 </ul>
 
     </div>
@@ -172,7 +178,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/isbelloq/notas_de_python/master?urlpath=tree/capitulo_04/poo.ipynb"
+        <a href="https://mybinder.org/v2/gh/isbelloq/notas_de_python/main?urlpath=tree/notas_de_python/_build/html/capitulo_04/poo.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -296,6 +302,23 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#atributos">
    Atributos
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#inicializar-clases">
+     Inicializar Clases
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#operaciones-con-los-atributos">
+     Operaciones con los atributos
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#atributos-de-clase">
+     Atributos de clase
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -325,6 +348,23 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#atributos">
    Atributos
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#inicializar-clases">
+     Inicializar Clases
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#operaciones-con-los-atributos">
+     Operaciones con los atributos
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#atributos-de-clase">
+     Atributos de clase
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -441,6 +481,353 @@ Ivan
 </div>
 </div>
 </div>
+<section id="inicializar-clases">
+<span id="poo-inicializar-clase"></span><h3>Inicializar Clases<a class="headerlink" href="#inicializar-clases" title="Permalink to this headline">#</a></h3>
+<p>La funcion <code class="docutils literal notranslate"><span class="pre">__init__()</span></code> es una funcion <strong>constructora</strong> tiene el poder de asignar valores a propiedades de objetos o hacer las operaciones necesarias para que un objeto sea creado.</p>
+<p>En el siguiente ejemplo se crea la clase <code class="docutils literal notranslate"><span class="pre">Consolas</span></code> con algunos atibutos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Defincion de la clase Consola</span>
+<span class="k">class</span> <span class="nc">Consolas</span><span class="p">():</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">companhia</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">nombre</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">companhia</span> <span class="o">=</span> <span class="n">companhia</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nombre</span> <span class="o">=</span> <span class="n">nombre</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Creacion de instancias</span>
+<span class="n">consola_1</span> <span class="o">=</span> <span class="n">Consolas</span><span class="p">(</span><span class="s1">&#39;Nintendo&#39;</span><span class="p">,</span> <span class="s1">&#39;Switch&#39;</span><span class="p">)</span>
+<span class="n">consola_2</span> <span class="o">=</span> <span class="n">Consolas</span><span class="p">(</span><span class="n">companhia</span><span class="o">=</span><span class="s1">&#39;Sony&#39;</span><span class="p">,</span> <span class="n">nombre</span><span class="o">=</span><span class="s1">&#39;Play Station 5&#39;</span><span class="p">)</span>
+
+<span class="c1"># Obtencion de atributos de las instancias</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">consola_1</span><span class="o">.</span><span class="n">companhia</span><span class="p">,</span> <span class="n">consola_1</span><span class="o">.</span><span class="n">nombre</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">consola_2</span><span class="p">,</span> <span class="s1">&#39;companhia&#39;</span><span class="p">),</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">consola_2</span><span class="p">,</span> <span class="s1">&#39;nombre&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Nintendo Switch
+Sony Play Station 5
+</pre></div>
+</div>
+</div>
+</div>
+<p>A una instancia ya creada se le puede agregar atriburos.</p>
+<p>Ejemplo:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Creacion de atributo `lanzamiento` en instancia consola_1</span>
+<span class="n">consola_1</span><span class="o">.</span><span class="n">lanzamiento</span> <span class="o">=</span> <span class="mi">2017</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">consola_1</span><span class="o">.</span><span class="n">lanzamiento</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2017
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Comprobacion de no creacion de atributo `lanzamiento` en consola_2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">consola_2</span><span class="o">.</span><span class="n">lanzamiento</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Comprobacion de no creacion de atributo `lanzamiento` en consola_2</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="nb">print</span><span class="p">(</span><span class="n">consola_2</span><span class="o">.</span><span class="n">lanzamiento</span><span class="p">)</span>
+
+<span class="ne">AttributeError</span>: &#39;Consolas&#39; object has no attribute &#39;lanzamiento&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Al crear una instacia, los atributos nuevos que se definan despues de su creacion no son compartidos.</p>
+</div>
+</section>
+<section id="operaciones-con-los-atributos">
+<h3>Operaciones con los atributos<a class="headerlink" href="#operaciones-con-los-atributos" title="Permalink to this headline">#</a></h3>
+<p>Hasta el momento hemos jugado con dos funciones que nos permiten assignar (<code class="docutils literal notranslate"><span class="pre">setattr</span></code>) y obtener (<code class="docutils literal notranslate"><span class="pre">getattr</span></code>) un atributo de una clase, sin embargo existen otras dos funciones:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">hasattr(objeto,</span> <span class="pre">nombre)</span></code> Retorna <code class="docutils literal notranslate"><span class="pre">True</span></code> se el nombre esta dentro del objeto, <code class="docutils literal notranslate"><span class="pre">False</span></code> en caso contrario.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">delattr(objeto,</span> <span class="pre">nombre)</span></code> Elimina el atributo con el nombre especificado.</p></li>
+</ul>
+<p>Aparte de estas dos funciones, la funcion <code class="docutils literal notranslate"><span class="pre">vars(objeto)</span></code> genera un diccionario donde las llaves son los nombres de los atributos y sus valores la asignacion.</p>
+<p>Veamos algunos ejemplos:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Creando una instanacia</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">Consolas</span><span class="p">(</span><span class="s1">&#39;Nintendo&#39;</span><span class="p">,</span> <span class="s1">&#39;GameBoy&#39;</span><span class="p">)</span>
+
+<span class="c1"># Revisando los atrubutos</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">vars</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;companhia&#39;: &#39;Nintendo&#39;, &#39;nombre&#39;: &#39;GameBoy&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Creando un nuevo atributo a la clase</span>
+<span class="nb">setattr</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="s1">&#39;lanzamiento&#39;</span><span class="p">,</span> <span class="mi">1989</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">vars</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;companhia&#39;: &#39;Nintendo&#39;, &#39;nombre&#39;: &#39;GameBoy&#39;, &#39;lanzamiento&#39;: 1989}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Probando funcionalidad de getattr</span>
+<span class="nb">getattr</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="s1">&#39;juegos&#39;</span><span class="p">)</span> <span class="c1"># Genera error porque &#39;juegos&#39; no existe</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">12</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Probando funcionalidad de getattr</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="s1">&#39;juegos&#39;</span><span class="p">)</span> <span class="c1"># Genera error porque &#39;juegos&#39; no existe</span>
+
+<span class="ne">AttributeError</span>: &#39;Consolas&#39; object has no attribute &#39;juegos&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="s1">&#39;juegos&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span> <span class="c1"># No se genera error porque se pone un valor por defecto</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">vars</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>None
+{&#39;companhia&#39;: &#39;Nintendo&#39;, &#39;nombre&#39;: &#39;GameBoy&#39;, &#39;lanzamiento&#39;: 1989}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Probando hasattr</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">hasattr</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="s1">&#39;lanzamiento&#39;</span><span class="p">))</span> <span class="c1">#True</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">hasattr</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="s1">&#39;juegos&#39;</span><span class="p">))</span> <span class="c1">#False</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Probando delattr</span>
+<span class="nb">delattr</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="s1">&#39;nombre&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">vars</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
+
+<span class="c1"># otra forma de hacer delattr</span>
+<span class="k">del</span> <span class="n">c</span><span class="o">.</span><span class="n">companhia</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">vars</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;companhia&#39;: &#39;Nintendo&#39;, &#39;lanzamiento&#39;: 1989}
+{&#39;lanzamiento&#39;: 1989}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="atributos-de-clase">
+<h3>Atributos de clase<a class="headerlink" href="#atributos-de-clase" title="Permalink to this headline">#</a></h3>
+<p>Los atributos vistos hasta ahora son propios de cada instancia y no son compartidos entre instancias, tal y como se vio en <a class="reference internal" href="#poo-inicializar-clase"><span class="std std-ref">Inicializar Clases</span></a>. Para crear atributos que se compartan por todas las instancias de clase se deben definir los atributos en el primer bloque logico como se muestra a continuacion.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definicion de clase con atributos de clase</span>
+<span class="k">class</span> <span class="nc">Michi</span><span class="p">:</span>
+    <span class="c1">#Atributos de clase</span>
+    <span class="n">papitas</span> <span class="o">=</span> <span class="mi">4</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;Negro&#39;</span>
+    <span class="n">nombres</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nombre</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1">#Atributos de instancia</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nombre</span> <span class="o">=</span> <span class="n">nombre</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nombres</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nombre</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Instanciando michis</span>
+<span class="n">venus</span> <span class="o">=</span> <span class="n">Michi</span><span class="p">(</span><span class="s1">&#39;Venus&#39;</span><span class="p">)</span>
+<span class="n">hera</span> <span class="o">=</span> <span class="n">Michi</span><span class="p">(</span><span class="s1">&#39;Hera&#39;</span><span class="p">)</span>
+<span class="n">gaia</span> <span class="o">=</span> <span class="n">Michi</span><span class="p">(</span><span class="s1">&#39;Gaia&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Examinando atributos</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">venus</span><span class="o">.</span><span class="n">color</span><span class="p">,</span> <span class="n">gaia</span><span class="o">.</span><span class="n">color</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">venus</span><span class="o">.</span><span class="n">papitas</span><span class="p">,</span> <span class="n">gaia</span><span class="o">.</span><span class="n">papitas</span><span class="p">)</span>
+
+<span class="c1">#Modificando el color de gaia</span>
+<span class="n">gaia</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;Plateado&#39;</span>
+
+<span class="c1">#Examinando atributos luego del cambio</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">venus</span><span class="o">.</span><span class="n">color</span><span class="p">,</span> <span class="n">gaia</span><span class="o">.</span><span class="n">color</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">venus</span><span class="o">.</span><span class="n">papitas</span><span class="p">,</span> <span class="n">gaia</span><span class="o">.</span><span class="n">papitas</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Negro Negro
+4 4
+Negro Plateado
+4 4
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Aunque al inicializar las instancias compartan atributos, si se modifica un atributo en una instancia determinada, este cambio solo se ve reflejado en la instancia modificada y no se replicara en el resto de instancias definidas.</p>
+</div>
+<p>Cuando se crean atributos de clase, no es necesario instanciar objetos para acceder a sus valores. Un ejemplo se ve a continuacion.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Examinando atributos de la Clase</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">vars</span><span class="p">(</span><span class="n">Michi</span><span class="p">))</span>
+
+<span class="c1"># Obtencion de atributos de clase</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Michi</span><span class="o">.</span><span class="n">papitas</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;__module__&#39;: &#39;__main__&#39;, &#39;papitas&#39;: 4, &#39;color&#39;: &#39;Negro&#39;, &#39;nombres&#39;: [&#39;Venus&#39;, &#39;Hera&#39;, &#39;Gaia&#39;], &#39;__init__&#39;: &lt;function Michi.__init__ at 0x7f1fb047e200&gt;, &#39;__dict__&#39;: &lt;attribute &#39;__dict__&#39; of &#39;Michi&#39; objects&gt;, &#39;__weakref__&#39;: &lt;attribute &#39;__weakref__&#39; of &#39;Michi&#39; objects&gt;, &#39;__doc__&#39;: None}
+4
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generando error por intentar acceder a atributo de instancia</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Michi</span><span class="o">.</span><span class="n">nombre</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">31</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Generando error por intentar acceder a atributo de instancia</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="nb">print</span><span class="p">(</span><span class="n">Michi</span><span class="o">.</span><span class="n">nombre</span><span class="p">)</span>
+
+<span class="ne">AttributeError</span>: type object &#39;Michi&#39; has no attribute &#39;nombre&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Al utilizar atributos de clase hay que prestar especial atencion a la mutabilidad de los objetos que se usan para asignar los valores, dado que al estar en el contexto de clase y no de instancia, si cualquier intancia modifica los atributos de clase en cualquier momento, por ejemplo, al instanciar la clase en el metodo <code class="docutils literal notranslate"><span class="pre">__init__</span></code>, estara modificando tambien los atributos de todas las instancias de la misma clase. Ocurre lo mismo si los atributos de la clase se modifican diretamente, el cambio se propaga por todas las instancias que no definan el atributo en la instancia. <span id="id1">[<a class="reference internal" href="../bib.html#id2" title="Ó.R. Jiménez. Python a fondo. Marcombo, 2021. ISBN 9789587787221.">Jiménez, 2021</a>]</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># __init__ modifica atributos de clase porque esta en el contexto de clase</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Michi</span><span class="o">.</span><span class="n">nombres</span><span class="p">)</span>
+
+<span class="c1"># revision de nombres en hera y gaia</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">hera</span><span class="o">.</span><span class="n">nombres</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">gaia</span><span class="o">.</span><span class="n">nombres</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Venus&#39;, &#39;Hera&#39;, &#39;Gaia&#39;]
+[&#39;Venus&#39;, &#39;Hera&#39;, &#39;Gaia&#39;]
+[&#39;Venus&#39;, &#39;Hera&#39;, &#39;Gaia&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Modificar nombres en instancia, solo se modifica hera</span>
+<span class="c1"># porque el cambio se hace en el contexto de instancia</span>
+<span class="n">hera</span><span class="o">.</span><span class="n">nombres</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Revision de atributo nombes en Michi (clase) y en venus (instancia)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Michi</span><span class="o">.</span><span class="n">nombres</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">venus</span><span class="o">.</span><span class="n">nombres</span><span class="p">)</span>
+
+<span class="c1"># Revision de atributo nombes en hera</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">hera</span><span class="o">.</span><span class="n">nombres</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Venus&#39;, &#39;Hera&#39;, &#39;Gaia&#39;]
+[&#39;Venus&#39;, &#39;Hera&#39;, &#39;Gaia&#39;]
+[]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Modificacion de nombres en clase, el cambio se progara</span>
+<span class="c1"># a venus y gaia porque no se asigno el atributo nombres</span>
+<span class="c1"># a nivel de instancia</span>
+<span class="n">Michi</span><span class="o">.</span><span class="n">nombres</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Josefina&#39;</span><span class="p">,</span> <span class="s1">&#39;Pancracio&#39;</span><span class="p">,</span> <span class="s1">&#39;Misifus&#39;</span><span class="p">]</span>
+
+<span class="c1"># Se modifica gaia y venus pero no hera</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Michi</span><span class="o">.</span><span class="n">nombres</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">venus</span><span class="o">.</span><span class="n">nombres</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">gaia</span><span class="o">.</span><span class="n">nombres</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">hera</span><span class="o">.</span><span class="n">nombres</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Josefina&#39;, &#39;Pancracio&#39;, &#39;Misifus&#39;]
+[&#39;Josefina&#39;, &#39;Pancracio&#39;, &#39;Misifus&#39;]
+[&#39;Josefina&#39;, &#39;Pancracio&#39;, &#39;Misifus&#39;]
+[]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 </section>
 
@@ -477,6 +864,13 @@ Ivan
             <p class="prev-next-subtitle">previous</p>
             <p class="prev-next-title">Notas de Python</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="../bib.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Bibliografia</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             </footer>

@@ -5,3 +5,4 @@ format: jb-book
 root: intro
 chapters:
 - file: capitulo_04/poo
+- file: bib
