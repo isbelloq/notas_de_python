@@ -164,21 +164,21 @@ setattr(c, 'lanzamiento', 1989)
 print(vars(c))
 
 
-# In[12]:
+# In[19]:
 
 
 # Probando funcionalidad de getattr
 getattr(c, 'juegos') # Genera error porque 'juegos' no existe
 
 
-# In[13]:
+# In[20]:
 
 
 print(getattr(c, 'juegos', None)) # No se genera error porque se pone un valor por defecto
 print(vars(c))
 
 
-# In[14]:
+# In[21]:
 
 
 # Probando hasattr
@@ -186,7 +186,7 @@ print(hasattr(c, 'lanzamiento')) #True
 print(hasattr(c, 'juegos')) #False
 
 
-# In[19]:
+# In[22]:
 
 
 # Probando delattr
@@ -204,7 +204,7 @@ print(vars(c))
 # 
 # Los atributos vistos hasta ahora son propios de cada instancia y no son compartidos entre instancias, tal y como se vio en {ref}`poo-inicializar_clase`. Para crear atributos que se compartan por todas las instancias de clase se deben definir los atributos en el primer bloque logico como se muestra a continuacion.
 
-# In[25]:
+# In[23]:
 
 
 # Definicion de clase con atributos de clase
@@ -219,7 +219,7 @@ class Michi:
         self.nombres.append(nombre)
 
 
-# In[26]:
+# In[24]:
 
 
 # Instanciando michis
@@ -228,7 +228,7 @@ hera = Michi('Hera')
 gaia = Michi('Gaia')
 
 
-# In[27]:
+# In[25]:
 
 
 #Examinando atributos
@@ -248,7 +248,7 @@ print(venus.papitas, gaia.papitas)
 
 # Cuando se crean atributos de clase, no es necesario instanciar objetos para acceder a sus valores. Un ejemplo se ve a continuacion.
 
-# In[30]:
+# In[26]:
 
 
 # Examinando atributos de la Clase
@@ -258,7 +258,7 @@ print(vars(Michi))
 print(Michi.papitas)
 
 
-# In[31]:
+# In[27]:
 
 
 # Generando error por intentar acceder a atributo de instancia
@@ -267,7 +267,7 @@ print(Michi.nombre)
 
 # Al utilizar atributos de clase hay que prestar especial atencion a la mutabilidad de los objetos que se usan para asignar los valores, dado que al estar en el contexto de clase y no de instancia, si cualquier intancia modifica los atributos de clase en cualquier momento, por ejemplo, al instanciar la clase en el metodo `__init__`, estara modificando tambien los atributos de todas las instancias de la misma clase. Ocurre lo mismo si los atributos de la clase se modifican diretamente, el cambio se propaga por todas las instancias que no definan el atributo en la instancia. {cite}`jimenez2021python`
 
-# In[33]:
+# In[28]:
 
 
 # __init__ modifica atributos de clase porque esta en el contexto de clase
@@ -278,7 +278,7 @@ print(hera.nombres)
 print(gaia.nombres)
 
 
-# In[34]:
+# In[29]:
 
 
 # Modificar nombres en instancia, solo se modifica hera
@@ -293,7 +293,7 @@ print(venus.nombres)
 print(hera.nombres)
 
 
-# In[35]:
+# In[30]:
 
 
 # Modificacion de nombres en clase, el cambio se progara
@@ -307,3 +307,90 @@ print(venus.nombres)
 print(gaia.nombres)
 print(hera.nombres)
 
+
+# ## Proteccion y privacidad en clases
+# 
+# * `_protegido`: Se considera un atributo o metodo _protegido_ de la clase, segun el [PEP-8](https://peps.python.org/pep-0008/#descriptive-naming-styles) es un indicador debil de uso intero, esto significa que no deberia ser usada fuera de la clase en la que se definio.
+# 
+# * `__privado`: Se considera un atributo o metodo _privado_ de la clase, segun el [PEP-8](https://peps.python.org/pep-0008/#descriptive-naming-styles) invoca el _name mangling_, esto quiere decir, que para acceder al abributo/metodo se deba usar `instancia._Clase__privado`. Se recomienda fuertemente no usar el atriburto/metodo fuera de la clase.
+# 
+# ```{tip}
+# `Python` no tiene los conceptos de _protegido_ o _privado_, como si lo tiene `Java` por lo que se puede acceder y modificar los atributos/metodos si se sabe como acceder a ellos. **NO** se recomienda la manipulacion de los atributros/metodos que sean `_protegidos` o `__privados`
+# ```
+# 
+# Ejemplo:
+
+# In[40]:
+
+
+# Definicion de clase
+class Foo:
+    _protegido = 0
+    __privado = 0
+
+    def __init__(self, x) -> None:
+        self.x = x
+        self._x = x*2
+        self.__x = x*3
+
+
+# In[41]:
+
+
+# Intancia de clase
+foo = Foo(2)
+
+# dir muestra todos los atributos de la clase
+print(dir(foo))
+
+
+# In[42]:
+
+
+# Obtencion de x
+print(foo.x)
+
+
+# In[43]:
+
+
+# Obtencion de _x `protegido`
+print(foo._x)
+
+
+# In[35]:
+
+
+# Intendo de obtencion de __x `privado`
+print(foo.__x) # Falla porque no tiene la forma `name mangling`
+
+
+# In[36]:
+
+
+# Obtencion de __x `privado`
+print(foo._Foo__x)
+
+
+# In[37]:
+
+
+# Obtencion de `_protegido` atributo de clase 
+print(Foo._protegido)
+
+
+# In[38]:
+
+
+# Intento de obtencion de `__privado` atributo de clase
+print(Foo.__privado) # Falla porque no tiene `name mangling`
+
+
+# In[39]:
+
+
+# Obtencion de `__privado` atributo de clase
+print(Foo._Foo__privado)
+
+
+# ## Construccion de clases personalizadas

@@ -320,6 +320,16 @@ title="Print to PDF"
    </li>
   </ul>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#proteccion-y-privacidad-en-clases">
+   Proteccion y privacidad en clases
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#construccion-de-clases-personalizadas">
+   Construccion de clases personalizadas
+  </a>
+ </li>
 </ul>
 
     </nav>
@@ -365,6 +375,16 @@ title="Print to PDF"
     </a>
    </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#proteccion-y-privacidad-en-clases">
+   Proteccion y privacidad en clases
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#construccion-de-clases-personalizadas">
+   Construccion de clases personalizadas
+  </a>
  </li>
 </ul>
 
@@ -606,7 +626,7 @@ Sony Play Station 5
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">12</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">19</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Probando funcionalidad de getattr</span>
 <span class="ne">----&gt; </span><span class="mi">2</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="s1">&#39;juegos&#39;</span><span class="p">)</span> <span class="c1"># Genera error porque &#39;juegos&#39; no existe</span>
 
@@ -735,7 +755,7 @@ Negro Plateado
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;__module__&#39;: &#39;__main__&#39;, &#39;papitas&#39;: 4, &#39;color&#39;: &#39;Negro&#39;, &#39;nombres&#39;: [&#39;Venus&#39;, &#39;Hera&#39;, &#39;Gaia&#39;], &#39;__init__&#39;: &lt;function Michi.__init__ at 0x7f1fb047e200&gt;, &#39;__dict__&#39;: &lt;attribute &#39;__dict__&#39; of &#39;Michi&#39; objects&gt;, &#39;__weakref__&#39;: &lt;attribute &#39;__weakref__&#39; of &#39;Michi&#39; objects&gt;, &#39;__doc__&#39;: None}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;__module__&#39;: &#39;__main__&#39;, &#39;papitas&#39;: 4, &#39;color&#39;: &#39;Negro&#39;, &#39;nombres&#39;: [&#39;Venus&#39;, &#39;Hera&#39;, &#39;Gaia&#39;], &#39;__init__&#39;: &lt;function Michi.__init__ at 0x7facd41d09d0&gt;, &#39;__dict__&#39;: &lt;attribute &#39;__dict__&#39; of &#39;Michi&#39; objects&gt;, &#39;__weakref__&#39;: &lt;attribute &#39;__weakref__&#39; of &#39;Michi&#39; objects&gt;, &#39;__doc__&#39;: None}
 4
 </pre></div>
 </div>
@@ -751,7 +771,7 @@ Negro Plateado
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">31</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">27</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Generando error por intentar acceder a atributo de instancia</span>
 <span class="ne">----&gt; </span><span class="mi">2</span> <span class="nb">print</span><span class="p">(</span><span class="n">Michi</span><span class="o">.</span><span class="n">nombre</span><span class="p">)</span>
 
@@ -828,6 +848,153 @@ Negro Plateado
 </div>
 </div>
 </section>
+</section>
+<section id="proteccion-y-privacidad-en-clases">
+<h2>Proteccion y privacidad en clases<a class="headerlink" href="#proteccion-y-privacidad-en-clases" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">_protegido</span></code>: Se considera un atributo o metodo <em>protegido</em> de la clase, segun el <a class="reference external" href="https://peps.python.org/pep-0008/#descriptive-naming-styles">PEP-8</a> es un indicador debil de uso intero, esto significa que no deberia ser usada fuera de la clase en la que se definio.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__privado</span></code>: Se considera un atributo o metodo <em>privado</em> de la clase, segun el <a class="reference external" href="https://peps.python.org/pep-0008/#descriptive-naming-styles">PEP-8</a> invoca el <em>name mangling</em>, esto quiere decir, que para acceder al abributo/metodo se deba usar <code class="docutils literal notranslate"><span class="pre">instancia._Clase__privado</span></code>. Se recomienda fuertemente no usar el atriburto/metodo fuera de la clase.</p></li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><code class="docutils literal notranslate"><span class="pre">Python</span></code> no tiene los conceptos de <em>protegido</em> o <em>privado</em>, como si lo tiene <code class="docutils literal notranslate"><span class="pre">Java</span></code> por lo que se puede acceder y modificar los atributos/metodos si se sabe como acceder a ellos. <strong>NO</strong> se recomienda la manipulacion de los atributros/metodos que sean <code class="docutils literal notranslate"><span class="pre">_protegidos</span></code> o <code class="docutils literal notranslate"><span class="pre">__privados</span></code></p>
+</div>
+<p>Ejemplo:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definicion de clase</span>
+<span class="k">class</span> <span class="nc">Foo</span><span class="p">:</span>
+    <span class="n">_protegido</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">__privado</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_x</span> <span class="o">=</span> <span class="n">x</span><span class="o">*</span><span class="mi">2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__x</span> <span class="o">=</span> <span class="n">x</span><span class="o">*</span><span class="mi">3</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Intancia de clase</span>
+<span class="n">foo</span> <span class="o">=</span> <span class="n">Foo</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># dir muestra todos los atributos de la clase</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">dir</span><span class="p">(</span><span class="n">foo</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;_Foo__privado&#39;, &#39;_Foo__x&#39;, &#39;__class__&#39;, &#39;__delattr__&#39;, &#39;__dict__&#39;, &#39;__dir__&#39;, &#39;__doc__&#39;, &#39;__eq__&#39;, &#39;__format__&#39;, &#39;__ge__&#39;, &#39;__getattribute__&#39;, &#39;__gt__&#39;, &#39;__hash__&#39;, &#39;__init__&#39;, &#39;__init_subclass__&#39;, &#39;__le__&#39;, &#39;__lt__&#39;, &#39;__module__&#39;, &#39;__ne__&#39;, &#39;__new__&#39;, &#39;__reduce__&#39;, &#39;__reduce_ex__&#39;, &#39;__repr__&#39;, &#39;__setattr__&#39;, &#39;__sizeof__&#39;, &#39;__str__&#39;, &#39;__subclasshook__&#39;, &#39;__weakref__&#39;, &#39;_protegido&#39;, &#39;_x&#39;, &#39;x&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Obtencion de x</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">foo</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Obtencion de _x `protegido`</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">foo</span><span class="o">.</span><span class="n">_x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Intendo de obtencion de __x `privado`</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">foo</span><span class="o">.</span><span class="n">__x</span><span class="p">)</span> <span class="c1"># Falla porque no tiene la forma `name mangling`</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">35</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">print</span><span class="p">(</span><span class="n">foo</span><span class="o">.</span><span class="n">__x</span><span class="p">)</span> <span class="c1"># Falla porque no tiene la forma `name mangling`</span>
+
+<span class="ne">AttributeError</span>: &#39;Foo&#39; object has no attribute &#39;__x&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Obtencion de __x `privado`</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">foo</span><span class="o">.</span><span class="n">_Foo__x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Obtencion de `_protegido` atributo de clase </span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Foo</span><span class="o">.</span><span class="n">_protegido</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Intento de obtencion de `__privado` atributo de clase</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Foo</span><span class="o">.</span><span class="n">__privado</span><span class="p">)</span> <span class="c1"># Falla porque no tiene `name mangling`</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">38</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">print</span><span class="p">(</span><span class="n">Foo</span><span class="o">.</span><span class="n">__privado</span><span class="p">)</span>
+
+<span class="ne">AttributeError</span>: type object &#39;Foo&#39; has no attribute &#39;__privado&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Obtencion de `__privado` atributo de clase</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Foo</span><span class="o">.</span><span class="n">_Foo__privado</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="construccion-de-clases-personalizadas">
+<h2>Construccion de clases personalizadas<a class="headerlink" href="#construccion-de-clases-personalizadas" title="Permalink to this headline">#</a></h2>
 </section>
 </section>
 
