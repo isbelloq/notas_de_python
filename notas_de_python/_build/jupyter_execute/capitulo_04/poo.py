@@ -145,7 +145,7 @@ print(consola_2.lanzamiento)
 # 
 # Veamos algunos ejemplos:
 
-# In[17]:
+# In[ ]:
 
 
 # Creando una instanacia
@@ -155,7 +155,7 @@ c = Consolas('Nintendo', 'GameBoy')
 print(vars(c))
 
 
-# In[18]:
+# In[ ]:
 
 
 # Creando un nuevo atributo a la clase
@@ -164,21 +164,21 @@ setattr(c, 'lanzamiento', 1989)
 print(vars(c))
 
 
-# In[19]:
+# In[ ]:
 
 
 # Probando funcionalidad de getattr
 getattr(c, 'juegos') # Genera error porque 'juegos' no existe
 
 
-# In[20]:
+# In[ ]:
 
 
 print(getattr(c, 'juegos', None)) # No se genera error porque se pone un valor por defecto
 print(vars(c))
 
 
-# In[21]:
+# In[ ]:
 
 
 # Probando hasattr
@@ -186,7 +186,7 @@ print(hasattr(c, 'lanzamiento')) #True
 print(hasattr(c, 'juegos')) #False
 
 
-# In[22]:
+# In[ ]:
 
 
 # Probando delattr
@@ -204,7 +204,7 @@ print(vars(c))
 # 
 # Los atributos vistos hasta ahora son propios de cada instancia y no son compartidos entre instancias, tal y como se vio en {ref}`poo-inicializar_clase`. Para crear atributos que se compartan por todas las instancias de clase se deben definir los atributos en el primer bloque logico como se muestra a continuacion.
 
-# In[23]:
+# In[ ]:
 
 
 # Definicion de clase con atributos de clase
@@ -219,7 +219,7 @@ class Michi:
         self.nombres.append(nombre)
 
 
-# In[24]:
+# In[ ]:
 
 
 # Instanciando michis
@@ -228,7 +228,7 @@ hera = Michi('Hera')
 gaia = Michi('Gaia')
 
 
-# In[25]:
+# In[ ]:
 
 
 #Examinando atributos
@@ -248,7 +248,7 @@ print(venus.papitas, gaia.papitas)
 
 # Cuando se crean atributos de clase, no es necesario instanciar objetos para acceder a sus valores. Un ejemplo se ve a continuacion.
 
-# In[26]:
+# In[ ]:
 
 
 # Examinando atributos de la Clase
@@ -258,7 +258,7 @@ print(vars(Michi))
 print(Michi.papitas)
 
 
-# In[27]:
+# In[ ]:
 
 
 # Generando error por intentar acceder a atributo de instancia
@@ -267,7 +267,7 @@ print(Michi.nombre)
 
 # Al utilizar atributos de clase hay que prestar especial atencion a la mutabilidad de los objetos que se usan para asignar los valores, dado que al estar en el contexto de clase y no de instancia, si cualquier intancia modifica los atributos de clase en cualquier momento, por ejemplo, al instanciar la clase en el metodo `__init__`, estara modificando tambien los atributos de todas las instancias de la misma clase. Ocurre lo mismo si los atributos de la clase se modifican diretamente, el cambio se propaga por todas las instancias que no definan el atributo en la instancia. {cite}`jimenez2021python`
 
-# In[28]:
+# In[ ]:
 
 
 # __init__ modifica atributos de clase porque esta en el contexto de clase
@@ -278,7 +278,7 @@ print(hera.nombres)
 print(gaia.nombres)
 
 
-# In[29]:
+# In[ ]:
 
 
 # Modificar nombres en instancia, solo se modifica hera
@@ -293,7 +293,7 @@ print(venus.nombres)
 print(hera.nombres)
 
 
-# In[30]:
+# In[ ]:
 
 
 # Modificacion de nombres en clase, el cambio se progara
@@ -320,7 +320,7 @@ print(hera.nombres)
 # 
 # Ejemplo:
 
-# In[40]:
+# In[1]:
 
 
 # Definicion de clase
@@ -334,7 +334,7 @@ class Foo:
         self.__x = x*3
 
 
-# In[41]:
+# In[2]:
 
 
 # Intancia de clase
@@ -344,53 +344,123 @@ foo = Foo(2)
 print(dir(foo))
 
 
-# In[42]:
+# In[3]:
 
 
 # Obtencion de x
 print(foo.x)
 
 
-# In[43]:
+# In[4]:
 
 
 # Obtencion de _x `protegido`
 print(foo._x)
 
 
-# In[35]:
+# In[5]:
 
 
 # Intendo de obtencion de __x `privado`
 print(foo.__x) # Falla porque no tiene la forma `name mangling`
 
 
-# In[36]:
+# In[6]:
 
 
 # Obtencion de __x `privado`
 print(foo._Foo__x)
 
 
-# In[37]:
+# In[7]:
 
 
 # Obtencion de `_protegido` atributo de clase 
 print(Foo._protegido)
 
 
-# In[38]:
+# In[8]:
 
 
 # Intento de obtencion de `__privado` atributo de clase
 print(Foo.__privado) # Falla porque no tiene `name mangling`
 
 
-# In[39]:
+# In[9]:
 
 
 # Obtencion de `__privado` atributo de clase
 print(Foo._Foo__privado)
 
 
-# ## Construccion de clases personalizadas
+# ## Construccion de clases personalizada
+# 
+# Existen dos metodos importantes en las clases `__new__` construye una instancio e `__init__` la inicializa.
+# 
+# 
+# * `__new__` llamado para __crear una nueva instancia__ de la clase, __el valor devuelto por el metodo debe ser una instancia de un objeto__ cualquiera, no necesariamente de la clase creada. Cuando se define `__new__` en una clase es porque se quieren modificar la clase en el constructor.
+# 
+# * `__init__` es llamado despues de `__new__` e inicializa la instancia que es devuelta por `__new__`.
+# 
+# Para afianzar los conocimientos del uso de `__new__` e `__init` se plantea el siguiente problema:
+# 
+# Se pretende crear la clase `Corredor` en la que se asigna los numeros de cada corredor de forma correlativa y, en caso de eliminar algun objeto `Corredor`, el hueco que ocupaba se queda vacio para poder ser asignado a algun nuevo corredor {cite}`jimenez2021python`
+
+# In[18]:
+
+
+class Corredor:
+    # atributo privado con el historal de numeros usados
+    __numeros_usados = set()
+
+    # constructor de la clase 
+    def __new__(cls, nombre, num=1):
+        #Generador de numeros no usados
+        while num in cls.__numeros_usados:
+            num += 1
+        cls.__numeros_usados.add(num) # Agregacion de numero ya usado 
+        instancia = super(Corredor, cls).__new__(cls) # Creacion de instancia dentro del constructor
+        instancia.__init__(nombre) # Inicializacion de la instancia
+        instancia.num = num # Modificacion de la instancia en el constructor
+        return instancia
+        
+    def __init__(self, nombre):
+        self.nombre = nombre
+    
+    def __del__(self):
+        self.__numeros_usados.remove(self.num)
+
+
+# In[19]:
+
+
+# Creacion de corredores
+nairo = Corredor('Nairo')
+rigo = Corredor('Rigoberto')
+lopez = Corredor('Superman')
+
+# Revision de numeros asignados
+print(nairo.num, rigo.num, lopez.num)
+
+
+# In[20]:
+
+
+# Eliminacion de Rigo
+del rigo
+
+# Revision de atributo privado
+print(Corredor._Corredor__numeros_usados)
+
+
+# In[21]:
+
+
+# Creacion de nuevo ciclista
+chaves = Corredor('Chavito')
+
+# Revision de numero de chaves
+print(chaves.num)
+
+
+# ## Propiedades en clases
