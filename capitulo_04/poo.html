@@ -1007,6 +1007,179 @@ Sony Play Station 5
 </section>
 <section id="propiedades-en-clases">
 <h2>Propiedades en clases<a class="headerlink" href="#propiedades-en-clases" title="Permalink to this headline">#</a></h2>
+<p>Una propiedad de la clase define si un atributo puede ser obtenido (<code class="docutils literal notranslate"><span class="pre">getter</span></code>), modificado o definido (<code class="docutils literal notranslate"><span class="pre">setter</span></code>) y eliminado (<code class="docutils literal notranslate"><span class="pre">deleter</span></code>). para hacer uso de estas propiedad en Python se define <code class="docutils literal notranslate"><span class="pre">property</span></code> para controlar que hacer en los tres casos definidos anteriormente.</p>
+<p>Para ver como funciona se pide construir la clase <code class="docutils literal notranslate"><span class="pre">Punto</span></code> con las siguietnes reglas:</p>
+<ul class="simple">
+<li><p>El punto <code class="docutils literal notranslate"><span class="pre">x</span></code> se debe poder acceder y eliminar, pero no modificar.</p></li>
+<li><p>El punto <code class="docutils literal notranslate"><span class="pre">y</span></code> se debe poder acceder y modificar, pero no eliminar.</p></li>
+</ul>
+<p>La implementacion se muestra a continacion.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Punto</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_x</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_y</span> <span class="o">=</span> <span class="n">y</span>
+
+    <span class="c1">#Definicion de x    </span>
+    <span class="c1">## getter</span>
+    <span class="k">def</span> <span class="nf">getx</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_x</span>
+
+    <span class="c1">## setter</span>
+    <span class="k">def</span> <span class="nf">setx</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">valor</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;Valor x no puede ser modificado&#39;</span><span class="p">)</span>
+
+    <span class="c1">## deleter</span>
+    <span class="k">def</span> <span class="nf">delx</span><span class="p">(</span><span class="n">sefl</span><span class="p">):</span>
+        <span class="k">del</span> <span class="n">sefl</span><span class="o">.</span><span class="n">_x</span>
+
+    <span class="c1">## configuracion de las propiedades de x</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">getx</span><span class="p">,</span> <span class="n">setx</span><span class="p">,</span> <span class="n">delx</span><span class="p">,</span> <span class="s1">&#39;Posicionen el eje de abscisas&#39;</span><span class="p">)</span>
+
+    <span class="c1">#Definicion de y</span>
+    <span class="c1">## getter</span>
+    <span class="k">def</span> <span class="nf">gety</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_y</span>
+
+    <span class="c1">## setter</span>
+    <span class="k">def</span> <span class="nf">sety</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">valor</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_y</span> <span class="o">=</span> <span class="n">valor</span>
+
+    <span class="c1">## deleter</span>
+    <span class="k">def</span> <span class="nf">dely</span><span class="p">(</span><span class="n">sefl</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;El atributo y no puede ser eliminado&#39;</span><span class="p">)</span>
+
+    <span class="c1">## configuracion de las propiedades de y </span>
+    <span class="n">y</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">gety</span><span class="p">,</span> <span class="n">sety</span><span class="p">,</span> <span class="n">dely</span><span class="p">,</span> <span class="s1">&#39;Posicionen el eje de ordenadas&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Creacion del punto</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="n">Punto</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">p1</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">p1</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4 2
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Intendo de modificacion de x</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">89</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">Exception</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">16</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1">#Intendo de modificacion de x</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">p1</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">89</span>
+
+<span class="nn">Cell In[1], line 11,</span> in <span class="ni">Punto.setx</span><span class="nt">(self, valor)</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="k">def</span> <span class="nf">setx</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">valor</span><span class="p">):</span>
+<span class="ne">---&gt; </span><span class="mi">11</span>     <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;Valor x no puede ser modificado&#39;</span><span class="p">)</span>
+
+<span class="ne">Exception</span>: Valor x no puede ser modificado
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Modificacion de y</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="mi">94</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Revision del punto</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">p1</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">p1</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4 94
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Eliminacion del punto x</span>
+<span class="k">del</span> <span class="n">p1</span><span class="o">.</span><span class="n">x</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Intento de eliminacion del punto y</span>
+<span class="k">del</span> <span class="n">p1</span><span class="o">.</span><span class="n">y</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">Exception</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">21</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1">#Intento de eliminacion del punto y</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="k">del</span> <span class="n">p1</span><span class="o">.</span><span class="n">y</span>
+
+<span class="nn">Cell In[1], line 26,</span> in <span class="ni">Punto.dely</span><span class="nt">(sefl)</span>
+<span class="g g-Whitespace">     </span><span class="mi">25</span> <span class="k">def</span> <span class="nf">dely</span><span class="p">(</span><span class="n">sefl</span><span class="p">):</span>
+<span class="ne">---&gt; </span><span class="mi">26</span>     <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;El atributo y no puede ser eliminado&#39;</span><span class="p">)</span>
+
+<span class="ne">Exception</span>: El atributo y no puede ser eliminado
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Intento de obtencion del punto x luego de ser eliminado</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">p1</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">9</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">print</span><span class="p">(</span><span class="n">p1</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+
+<span class="nn">Cell In[1], line 8,</span> in <span class="ni">Punto.getx</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="k">def</span> <span class="nf">getx</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="ne">----&gt; </span><span class="mi">8</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_x</span>
+
+<span class="ne">AttributeError</span>: &#39;Punto&#39; object has no attribute &#39;_x&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Obtencion del punto y</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">p1</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>94
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 
