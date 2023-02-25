@@ -464,3 +464,109 @@ print(chaves.num)
 
 
 # ## Propiedades en clases
+# 
+# Una propiedad de la clase define si un atributo puede ser obtenido (`getter`), modificado o definido (`setter`) y eliminado (`deleter`). para hacer uso de estas propiedad en Python se define `property` para controlar que hacer en los tres casos definidos anteriormente.
+# 
+# Para ver como funciona se pide construir la clase `Punto` con las siguietnes reglas:
+# * El punto `x` se debe poder acceder y eliminar, pero no modificar.
+# * El punto `y` se debe poder acceder y modificar, pero no eliminar.
+# 
+# La implementacion se muestra a continacion.
+
+# In[1]:
+
+
+class Punto:
+    def __init__(self, x, y) -> None:
+        self._x = x
+        self._y = y
+
+    #Definicion de x    
+    ## getter
+    def getx(self):
+        return self._x
+
+    ## setter
+    def setx(self,valor):
+        raise Exception('Valor x no puede ser modificado')
+
+    ## deleter
+    def delx(sefl):
+        del sefl._x
+
+    ## configuracion de las propiedades de x
+    x = property(getx, setx, delx, 'Posicionen el eje de abscisas')
+
+    #Definicion de y
+    ## getter
+    def gety(self):
+        return self._y
+
+    ## setter
+    def sety(self,valor):
+        self._y = valor
+
+    ## deleter
+    def dely(sefl):
+        raise Exception('El atributo y no puede ser eliminado')
+
+    ## configuracion de las propiedades de y 
+    y = property(gety, sety, dely, 'Posicionen el eje de ordenadas')
+
+
+# In[14]:
+
+
+#Creacion del punto
+p1 = Punto(4,2)
+print(p1.x, p1.y)
+
+
+# In[16]:
+
+
+#Intendo de modificacion de x
+p1.x = 89
+
+
+# In[17]:
+
+
+#Modificacion de y
+p1.y = 94
+
+
+# In[19]:
+
+
+#Revision del punto
+print(p1.x, p1.y)
+
+
+# In[20]:
+
+
+#Eliminacion del punto x
+del p1.x
+
+
+# In[21]:
+
+
+#Intento de eliminacion del punto y
+del p1.y
+
+
+# In[9]:
+
+
+#Intento de obtencion del punto x luego de ser eliminado
+print(p1.x)
+
+
+# In[22]:
+
+
+# Obtencion del punto y
+print(p1.y)
+
