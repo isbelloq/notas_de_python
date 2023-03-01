@@ -393,6 +393,7 @@ print(Foo.__privado) # Falla porque no tiene `name mangling`
 print(Foo._Foo__privado)
 
 
+# (poo-construccion_de_clases_personalizada)=
 # ## Construccion de clases personalizada
 # 
 # Existen dos metodos importantes en las clases `__new__` construye una instancio e `__init__` la inicializa.
@@ -406,7 +407,7 @@ print(Foo._Foo__privado)
 # 
 # Se pretende crear la clase `Corredor` en la que se asigna los numeros de cada corredor de forma correlativa y, en caso de eliminar algun objeto `Corredor`, el hueco que ocupaba se queda vacio para poder ser asignado a algun nuevo corredor {cite}`jimenez2021python`
 
-# In[18]:
+# In[10]:
 
 
 class Corredor:
@@ -431,7 +432,7 @@ class Corredor:
         self.__numeros_usados.remove(self.num)
 
 
-# In[19]:
+# In[11]:
 
 
 # Creacion de corredores
@@ -443,7 +444,7 @@ lopez = Corredor('Superman')
 print(nairo.num, rigo.num, lopez.num)
 
 
-# In[20]:
+# In[12]:
 
 
 # Eliminacion de Rigo
@@ -453,7 +454,7 @@ del rigo
 print(Corredor._Corredor__numeros_usados)
 
 
-# In[21]:
+# In[13]:
 
 
 # Creacion de nuevo ciclista
@@ -495,7 +496,7 @@ class Punto:
         del sefl._x
 
     ## configuracion de las propiedades de x
-    x = property(getx, setx, delx, 'Posicionen el eje de abscisas')
+    x = property(getx, setx, delx, 'Posicion en el eje de abscisas')
 
     #Definicion de y
     ## getter
@@ -511,7 +512,7 @@ class Punto:
         raise Exception('El atributo y no puede ser eliminado')
 
     ## configuracion de las propiedades de y 
-    y = property(gety, sety, dely, 'Posicionen el eje de ordenadas')
+    y = property(gety, sety, dely, 'Posicion en el eje de ordenadas')
 
 
 # In[14]:
@@ -570,3 +571,177 @@ print(p1.x)
 # Obtencion del punto y
 print(p1.y)
 
+
+# Otra forma de implementar el comportamiento de las propiedades de un atributo se puede hacer con el uso del decorador `@property`
+# 
+# Se muestra la misma implementacion de la clase `Punto` pero con decoradores.
+
+# In[1]:
+
+
+class Punto:
+    def __init__(self, x: float, y: float) -> None:
+        self._x = x
+        self._y = y
+
+    # Propiedades de x
+
+    ## getter
+    @property
+    def x(self) -> float:
+        """
+        x Posicion en el eje de abcisas
+
+        Returns
+        -------
+        float
+            Punto en x
+        """
+
+        return self._x
+    
+    ## deleter
+    @x.deleter
+    def x(self) -> None:
+        del self._x
+
+    # Propiedades en y
+
+    ## getter
+    @property
+    def y(self) -> float:
+        """
+        y Posicion en el eje de las ordenadas
+
+        Returns
+        -------
+        float
+            Punto en y
+        """
+        return self._y
+
+    ## setter    
+    @y.setter
+    def y(self, valor) -> None:
+        self._y = valor
+
+
+# In[2]:
+
+
+#Creacion del punto
+p1 = Punto(4,2)
+print(p1.x, p1.y)
+
+
+# In[3]:
+
+
+#Intendo de modificacion de x
+p1.x = 89
+
+
+# In[4]:
+
+
+#Modificacion de y
+p1.y = 94
+
+
+# In[5]:
+
+
+#Revision del punto
+print(p1.x, p1.y)
+
+
+# In[6]:
+
+
+#Eliminacion del punto x
+del p1.x
+
+
+# In[7]:
+
+
+#Intento de eliminacion del punto y
+del p1.y
+
+
+# In[8]:
+
+
+#Intento de obtencion del punto x luego de ser eliminado
+print(p1.x)
+
+
+# In[9]:
+
+
+# Obtencion del punto y
+print(p1.y)
+
+
+# ```{tip}
+# Cuando se usa `@property` y el decorador del atributo no es implementado (como `@x.setter` o `@y.deleter`) se eleva un error de tipo `AttributeError` lo cual indica que la propiedad no esta implementado por lo tanto no se ejecuta.
+# ```
+
+# ## Ejemplo
+# 
+# Para reforsar los conceptos vistos hasta ahora se pone el siguiente ejercicio.
+# 
+# Se pretende crear la clase `Finalista` que guarde la clasificacion de corredores que terminaron la carrera, respetando el orden en que pasaron por la linea de meta. La clase `Corredor` se definio en {ref}`poo-construccion_de_clases_personalizada` y es el unico objeto que debera ser usado como parametro del constructor de la clase `Finalista`. `Finalista` debera guardar el contador actual de todos los finalistas y cada finalista no puede modificar su posicion. {cite}`jimenez2021python`
+
+# In[14]:
+
+
+class Finalista:
+    __finalizados = 0
+    def __new__(cls, corredor):
+        cls.__finalizados += 1
+        puesto = cls.__finalizados
+        instancia = super(Finalista, cls).__new__(cls)
+        instancia.__init__(corredor)
+        instancia._posicion = puesto
+        return instancia
+    
+    def __init__(self, corredor) -> None:
+        self.corredor = corredor
+
+    @property
+    def posicion(self):
+        """
+        Posicion en que el corredor finalizo la carrera
+        """
+        return self._posicion
+
+
+# In[16]:
+
+
+# Creacion de corredores
+nairo = Corredor('Nairo')
+rigo = Corredor('Rigoberto')
+lopez = Corredor('Superman')
+
+# Finalizacion de corredores
+nairo_finalista = Finalista(nairo)
+rigo_finalista = Finalista(rigo)
+
+
+# In[17]:
+
+
+# Revision de llegada
+print(nairo_finalista.posicion, rigo_finalista.posicion)
+
+
+# In[18]:
+
+
+# Intento de modificacion de posicion de rigo_finalista
+rigo_finalista.posicion = 1
+
+
+# ## Metodos
