@@ -745,3 +745,310 @@ rigo_finalista.posicion = 1
 
 
 # ## Metodos
+# 
+# Son **funciones** presentes en clases o en instancias y se encatgan de realizar tareas con los atributos de la clase o con datos fuera de la clase o instancia. {cite}`jimenez2021python`.
+# 
+# En `Python` se pueden generara tres tipos de metodos.
+# 
+# 1. Metodos de instancia.
+# 2. Metodos de clase.
+# 3. Metodos estaticos.
+
+# ### Metodos de instancia
+# 
+# Son funciones que se crean dentro de una clase con la particularidad que su primer parametro es `self`.
+# 
+# Un ejemplo se muestra a continuacion:
+
+# In[2]:
+
+
+import math
+
+class Punto:
+    def __init__(self, x: float, y:float) -> None:
+        self.x = x
+        self.y = y
+
+    # Creacion de metodo de instancia: distancia    
+    def distancia(self, otro_punto) -> float:
+        """
+        La raiz cuadrada de los cuadrados de las diferencias
+
+        Parameters
+        ----------
+        otro_punto : Punto
+            Otro punto para hacer el calculo de la distancia
+
+        Returns
+        -------
+        float
+            distancia entre el punto de la clase y otro punto
+        """
+
+        xs = (self.x - otro_punto.x) ** 2
+        ys = (self.y - otro_punto.y) ** 2
+
+        return math.sqrt(xs + ys)
+     
+    # Creacion de metodo de instancia: mover_x    
+    def mover_x(self, cantidad: float) -> None:
+        """
+        mover_x se mueve el punto x una cantidad definida
+
+        Parameters
+        ----------
+        cantidad : float
+            Cantidad a mover el punto x
+        """
+
+        self.x += cantidad
+    
+    # Creacion de metodo de instancia: mover_y    
+    def mover_y(self, cantidad: float) -> None:
+        """
+        mover_y se mueve el punto y una cantidad definida
+
+        Parameters
+        ----------
+        cantidad : float
+            Cantidad a mover el punto y
+        """
+
+        self.y += cantidad
+
+
+# In[3]:
+
+
+# Definicion de intancias de prueba
+p1 = Punto(7,5)
+p2 = Punto(4,1)
+
+# Prueba de metodos
+## distancia
+print(p1.distancia(p2))
+print(p2.distancia(p1))
+
+## mover_x
+p1.mover_x(5)
+print(p1.x, p1.y)
+
+## mover_y
+p2.mover_y(-10)
+print(p2.x, p2.y)
+
+
+# (poo-metodos_de_clase)=
+# ### Metodos de clase
+# 
+# Son metodos que estan orientados a nivel de **clase**. Para definir un metodo de clase se debe usar el decorador `@classmethod` y el primer parametro debe ser `cls`.
+# 
+# Un ejemplo:
+
+# In[4]:
+
+
+class Foo(object):
+    # Atributo de clase
+    x = 10
+
+    def __init__(self, x) -> None:
+        # Atributo de instancia
+        self.x = x
+
+    @classmethod
+    def get_x_clase(cls):
+        return cls.x
+
+
+# In[5]:
+
+
+# Creacion de instancia
+f = Foo(-2)
+
+# Obtencion del atributo de instancia
+print(f.x)
+
+# Obtencion del atributo de clase usando el metodod de clase
+print(f.get_x_clase())
+
+
+# Uno de los usos que se le puede dar a los metodos de clase son:
+# 
+# * Creacion de instancias predefinidas.
+# * Inicializacion de instancia con una logica particular.
+# 
+# Para ilustara esto se plantea el siguiente problema:
+# 
+# Se pretende crear una clase que modele animales con distinto nombre, tipo, largo, y masa, pero que tambien se puedan inicializar intancias si se provee una cadena de caracteres separada por comas con los valores de los atributos necesarios. Adicionalmente, queremos tener metodos simples que construyan un gato o un perro:
+# * Un gato es de tipo "Gato", tiene un largo de 120 cm y una masa de 3.8 kg.
+# * Un perro es de tipo "Perro", tiene un largo de 500 cm y una masa de 25.4kg.
+# 
+# {cite}`jimenez2021python`
+
+# In[2]:
+
+
+class Animal:
+    def __init__(self, tipo: str, largo: float, masa:float) -> None:
+        self.tipo = tipo
+        self.largo = largo
+        self.masa = masa
+
+    @classmethod
+    def desde_str(cls, cadena:str):
+        """
+        desde_str Creacion de la instancia animal desde una cadena de caracteres
+
+        Parameters
+        ----------
+        cadena : str
+            Cadena de la forma tipo,largo,masa
+
+        Returns
+        -------
+        _type_
+            instanca del animal
+        """
+        tipo, largo, masa = cadena.split(',')
+        return cls(tipo, float(largo), float(masa))
+    
+    @classmethod
+    def gato(cls):
+        """
+        gato Creacion de la instancia Gato
+
+        Returns
+        -------
+        _type_
+            instancia gato con tipo Gato, largo 120cm y masa 3.8kg
+        """
+        return cls("Gato", 120, 3.8)
+ 
+    @classmethod
+    def perro(cls):
+        """
+        perro Creacion de la instancia Perro
+
+        Returns
+        -------
+        _type_
+            instancia perro con tipo Perro, largo 500cm y masa 25.4kg
+        """
+        return cls("Perro", 500, 25.4)
+
+
+# In[3]:
+
+
+# Creacion de instancia de forma usual
+cebra = Animal("Cebra", 15000, 150)
+
+# Creacion de intancias con los metodos de clase
+## Con el metodo desde_str
+elefante = Animal.desde_str("Elefante,300000,2600")
+## Con el metodo gato
+gato = Animal.gato()
+## Con el metodo perro
+perro = Animal.perro()
+
+print(cebra, elefante, gato, perro)
+
+
+# ### Metodos estaticos
+# 
+# Son metodos que petenecen a la clase pero no necesariamente hacen uso de los atributos de la clase o de la instancia. En algunos casos se usa para mejorar la legibilidad del codigo o poerque fuera de la clase realmente no tiene mucho sentido {cite}`jimenez2021python`
+# 
+# Para crear un metodo estatico se debe hacer uso del decorador `@staticmethod`.
+# 
+# Como ejemplo se usara la clase `Animal` definida en {ref}`poo-metodos_de_clase` y se agregara un metodo de instancia que calcule el peso del animal y un metodo estatico con el valor de la gavedad.
+
+# In[4]:
+
+
+class Animal:
+    def __init__(self, tipo: str, largo: float, masa:float) -> None:
+        self.tipo = tipo
+        self.largo = largo
+        self.masa = masa
+
+    @classmethod
+    def desde_str(cls, cadena:str):
+        """
+        desde_str Creacion de la instancia animal desde una cadena de caracteres
+
+        Parameters
+        ----------
+        cadena : str
+            Cadena de la forma tipo,largo,masa
+
+        Returns
+        -------
+        _type_
+            instanca del animal
+        """
+        tipo, largo, masa = cadena.split(',')
+        return cls(tipo, float(largo), float(masa))
+    
+    @classmethod
+    def gato(cls):
+        """
+        gato Creacion de la instancia Gato
+
+        Returns
+        -------
+        _type_
+            instancia gato con tipo Gato, largo 120cm y masa 3.8kg
+        """
+        return cls("Gato", 120, 3.8)
+ 
+    @classmethod
+    def perro(cls):
+        """
+        perro Creacion de la instancia Perro
+
+        Returns
+        -------
+        _type_
+            instancia perro con tipo Perro, largo 500cm y masa 25.4kg
+        """
+        return cls("Perro", 500, 25.4)
+
+    def peso(self) -> float:
+        """
+        peso metodo de calculo del peso del animal
+
+        Returns
+        -------
+        float
+            Peso del animal
+        """
+
+        return self.masa * self.gravedad()
+
+    @staticmethod
+    def gravedad() -> float:
+        """
+        gravedad valor constante de la gravedad
+ 
+        Returns
+        -------
+        float
+            valor de la gravidad en m/s^2
+        """
+
+        return 9.8
+
+
+# In[5]:
+
+
+# Revision del metodo estatico
+print(Animal.gravedad())
+
+# Creacion de instancia elefante y calculo del peso
+elefante = Animal.desde_str("Elefante,300000,2600")
+print(elefante.peso())
+
