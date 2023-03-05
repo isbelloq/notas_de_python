@@ -362,6 +362,18 @@ title="Print to PDF"
    </li>
   </ul>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#metodos-magicos">
+   Metodos magicos
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#metodos-para-usar-operaciones-matematicas">
+     Metodos para usar operaciones matematicas
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 
     </nav>
@@ -446,6 +458,18 @@ title="Print to PDF"
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#metodos-estaticos">
      Metodos estaticos
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#metodos-magicos">
+   Metodos magicos
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#metodos-para-usar-operaciones-matematicas">
+     Metodos para usar operaciones matematicas
     </a>
    </li>
   </ul>
@@ -1826,6 +1850,129 @@ Sony Play Station 5
 </div>
 </div>
 </div>
+</section>
+</section>
+<section id="metodos-magicos">
+<h2>Metodos magicos<a class="headerlink" href="#metodos-magicos" title="Permalink to this headline">#</a></h2>
+<p>Son metodos que que <strong>estandarizan potrocolos</strong> comunes en <code class="docutils literal notranslate"><span class="pre">Python</span></code> como lo pueden ser las operaciones de comparacion (<code class="docutils literal notranslate"><span class="pre">==</span></code>, <code class="docutils literal notranslate"><span class="pre">!=</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;</span></code>, ect.), las operaciones matematicas (<code class="docutils literal notranslate"><span class="pre">+</span></code>, <code class="docutils literal notranslate"><span class="pre">-</span></code>, <code class="docutils literal notranslate"><span class="pre">*</span></code>, <code class="docutils literal notranslate"><span class="pre">/</span></code>, ect.) u otros metodos comuntes (<code class="docutils literal notranslate"><span class="pre">len</span></code>, <code class="docutils literal notranslate"><span class="pre">bool</span></code>, etc.). Los metodos magicos inician y terminana con <code class="docutils literal notranslate"><span class="pre">__</span></code>.</p>
+<p>En las secciones anteriores se ha usar <code class="docutils literal notranslate"><span class="pre">__init__</span></code> o <code class="docutils literal notranslate"><span class="pre">__new__</span></code> que son metodos magicos para inicializar y construir una instancia, pero existen muchos mas.</p>
+<p>Para ver su uso, se plantea el siguente reto: Se desea crear la clase <code class="docutils literal notranslate"><span class="pre">Planta</span></code> con los siguientes requisitos:</p>
+<ul class="simple">
+<li><p>Dos plantas son iguales si su tipo es el mismo. Para utilizar el operador <code class="docutils literal notranslate"><span class="pre">==</span></code> se debe definir el metodo magico <code class="docutils literal notranslate"><span class="pre">__eq__</span></code> en la clase.</p></li>
+<li><p>Una planta es mayor que otra, si su altura es mayor. Para utilizar el operador <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> se debe definir el metodo magico <code class="docutils literal notranslate"><span class="pre">__gt__</span></code> y para usar el operador <code class="docutils literal notranslate"><span class="pre">&gt;=</span></code> se debe definir el metodo magico <code class="docutils literal notranslate"><span class="pre">__ge__</span></code>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Planta</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nombre</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">tipo</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">altura</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nombre</span> <span class="o">=</span> <span class="n">nombre</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tipo</span> <span class="o">=</span> <span class="n">tipo</span>
+        <span class="bp">self</span><span class="o">.</span> <span class="n">altura</span> <span class="o">=</span> <span class="n">altura</span>
+
+    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">otra_planta</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        __eq__ operador de igualdad para una planta.</span>
+
+<span class="sd">        Dos plantas son iguales si tienen el mismo tipo</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        otra_planta : _type_</span>
+<span class="sd">            Planta a comparar</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        bool</span>
+<span class="sd">            True si las plantas tienen el mismo tipo False en caso contrario</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tipo</span> <span class="o">==</span> <span class="n">otra_planta</span><span class="o">.</span><span class="n">tipo</span>
+
+    <span class="k">def</span> <span class="fm">__gt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">otra_planta</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        __gt__ Comparacion de dos plantas</span>
+
+<span class="sd">        Se compara la altura de la planta</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        otra_planta : _type_</span>
+<span class="sd">            Planta a comparar</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        bool</span>
+<span class="sd">            True si la plana tiene mayor altura que otra_planta</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">altura</span> <span class="o">&gt;</span> <span class="n">otra_planta</span><span class="o">.</span><span class="n">altura</span>
+ 
+    <span class="k">def</span> <span class="fm">__ge__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">otra_planta</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        __ge__ Comparacion de dos plantas</span>
+
+<span class="sd">        Se compara la altura de la planta</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        otra_planta : _type_</span>
+<span class="sd">            Planta a comparar</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        bool</span>
+<span class="sd">            True si la plana tiene mayor o igual altura que otra_planta</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">altura</span> <span class="o">&gt;=</span> <span class="n">otra_planta</span><span class="o">.</span><span class="n">altura</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Creacion de instancias</span>
+<span class="n">camelia</span> <span class="o">=</span> <span class="n">Planta</span><span class="p">(</span><span class="s1">&#39;Camelia&#39;</span><span class="p">,</span> <span class="s1">&#39;Arbusto&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">celindo</span> <span class="o">=</span> <span class="n">Planta</span><span class="p">(</span><span class="s1">&#39;Celindo&#39;</span><span class="p">,</span> <span class="s1">&#39;Arbusto&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">pino</span> <span class="o">=</span> <span class="n">Planta</span><span class="p">(</span><span class="s1">&#39;Pino&#39;</span><span class="p">,</span> <span class="s1">&#39;Arbol&#39;</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+
+<span class="c1">## Comparacion de igualdad</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">camelia</span> <span class="o">==</span> <span class="n">celindo</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">camelia</span> <span class="o">==</span> <span class="n">pino</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Comparacion de mayor o igual</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">camelia</span> <span class="o">&gt;</span> <span class="n">pino</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">celindo</span> <span class="o">&lt;=</span> <span class="n">celindo</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">celindo</span> <span class="o">&gt;=</span> <span class="n">pino</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+True
+False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Si se implementa <code class="docutils literal notranslate"><span class="pre">__gt__</span></code> Se puede usar el operador <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> y a su vez <code class="docutils literal notranslate"><span class="pre">&lt;</span></code>.</p>
+<p>Si se implementa <code class="docutils literal notranslate"><span class="pre">__ge__</span></code> Se puede usar el operador <code class="docutils literal notranslate"><span class="pre">&gt;=</span></code> y a su vez <code class="docutils literal notranslate"><span class="pre">&lt;=</span></code></p>
+</div>
+<p>Una lista de los metodos magicos se encuentra en la <a class="reference external" href="https://docs.python.org/3/reference/datamodel.html">documentacion de <code class="docutils literal notranslate"><span class="pre">Python</span></code></a></p>
+<section id="metodos-para-usar-operaciones-matematicas">
+<h3>Metodos para usar operaciones matematicas<a class="headerlink" href="#metodos-para-usar-operaciones-matematicas" title="Permalink to this headline">#</a></h3>
 </section>
 </section>
 </section>
