@@ -1052,3 +1052,112 @@ print(Animal.gravedad())
 elefante = Animal.desde_str("Elefante,300000,2600")
 print(elefante.peso())
 
+
+# ## Metodos magicos
+# 
+# Son metodos que que **estandarizan potrocolos** comunes en `Python` como lo pueden ser las operaciones de comparacion (`==`, `!=`, `<`, `>`, ect.), las operaciones matematicas (`+`, `-`, `*`, `/`, ect.) u otros metodos comuntes (`len`, `bool`, etc.). Los metodos magicos inician y terminana con `__`.
+# 
+# En las secciones anteriores se ha usar `__init__` o `__new__` que son metodos magicos para inicializar y construir una instancia, pero existen muchos mas.
+# 
+# Para ver su uso, se plantea el siguente reto: Se desea crear la clase `Planta` con los siguientes requisitos:
+# 
+# * Dos plantas son iguales si su tipo es el mismo. Para utilizar el operador `==` se debe definir el metodo magico `__eq__` en la clase.
+# * Una planta es mayor que otra, si su altura es mayor. Para utilizar el operador `>` se debe definir el metodo magico `__gt__` y para usar el operador `>=` se debe definir el metodo magico `__ge__`.
+
+# In[6]:
+
+
+class Planta:
+    def __init__(self, nombre: str, tipo: str, altura: float) -> None:
+        self.nombre = nombre
+        self.tipo = tipo
+        self. altura = altura
+
+    def __eq__(self, otra_planta) -> bool:
+        """
+        __eq__ operador de igualdad para una planta.
+
+        Dos plantas son iguales si tienen el mismo tipo
+
+        Parameters
+        ----------
+        otra_planta : _type_
+            Planta a comparar
+
+        Returns
+        -------
+        bool
+            True si las plantas tienen el mismo tipo False en caso contrario
+        """
+        return self.tipo == otra_planta.tipo
+
+    def __gt__(self, otra_planta) -> bool:
+        """
+        __gt__ Comparacion de dos plantas
+
+        Se compara la altura de la planta
+
+        Parameters
+        ----------
+        otra_planta : _type_
+            Planta a comparar
+
+        Returns
+        -------
+        bool
+            True si la plana tiene mayor altura que otra_planta
+        """
+
+        return self.altura > otra_planta.altura
+ 
+    def __ge__(self, otra_planta) -> bool:
+        """
+        __ge__ Comparacion de dos plantas
+
+        Se compara la altura de la planta
+
+        Parameters
+        ----------
+        otra_planta : _type_
+            Planta a comparar
+
+        Returns
+        -------
+        bool
+            True si la plana tiene mayor o igual altura que otra_planta
+        """
+
+        return self.altura >= otra_planta.altura
+
+
+# In[7]:
+
+
+## Creacion de instancias
+camelia = Planta('Camelia', 'Arbusto', 2)
+celindo = Planta('Celindo', 'Arbusto', 5)
+pino = Planta('Pino', 'Arbol', 9)
+
+## Comparacion de igualdad
+print(camelia == celindo)
+print(camelia == pino)
+
+
+# In[8]:
+
+
+## Comparacion de mayor o igual
+print(camelia > pino)
+print(celindo <= celindo)
+print(celindo >= pino)
+
+
+# ```{tip}
+# Si se implementa `__gt__` Se puede usar el operador `>` y a su vez `<`.
+# 
+# Si se implementa `__ge__` Se puede usar el operador `>=` y a su vez `<=`
+# ```
+
+# Una lista de los metodos magicos se encuentra en la [documentacion de `Python`](https://docs.python.org/3/reference/datamodel.html)
+
+# ### Metodos para usar operaciones matematicas
