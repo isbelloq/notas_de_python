@@ -1,1 +1,3 @@
+.DS_Store
 .venv/
+notas_de_python/_build/*
