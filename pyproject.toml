@@ -1,10 +1,9 @@
 [tool.poetry]
-name = "nota-de-python"
+name = "notas-de-python"
 version = "0.1.0"
 description = ""
 authors = ["Santiago Bello <isbelloq@gmail.com>"]
 readme = "README.md"
-packages = [{include = "nota_de_python"}]
 
 [tool.poetry.dependencies]
 python = "3.10.10"
