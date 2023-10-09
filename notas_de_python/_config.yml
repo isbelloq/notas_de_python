@@ -8,7 +8,7 @@ author: Santiago Bello
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
 execute:
-  execute_notebooks: force
+  execute_notebooks: cache
 
 # Define the name of the latex output file for PDF builds
 latex:
@@ -27,11 +27,11 @@ sphinx:
 # Information about where the book exists on the web
 repository:
   url: https://github.com/isbelloq/notas_de_python  # Online location of your book
-  path_to_book: notas_de_python/_build/html  # Optional path to your book, relative to the repository root
+  path_to_book: notas_de_python  # Optional path to your book, relative to the repository root
   branch: main  # Which branch of the repository should be used when creating links (optional)
 
 # Add GitHub buttons to your book
 # See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
 html:
-  # use_issues_button: true
+  use_issues_button: true
   use_repository_button: true
